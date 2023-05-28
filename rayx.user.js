@@ -9,7 +9,7 @@
 // @downloadURL https://github.com/axizof/rayx/raw/main/rayx.user.js
 // ==/UserScript==
 
-  console.log("INIT RAYXTENSION...");
+   console.log("INIT RAYXTENSION...");
 
   // Variables pour les couleurs
   var backgroundColor = "rgb(31, 21, 60)";
@@ -639,5 +639,36 @@ function cardchangeee() {
   console.log("CREATED BY BTFMOF");
 }
 
-displayall();
 
+// Créer le div en plein écran
+const fullscreenDiv = document.createElement('div');
+fullscreenDiv.style.position = 'fixed';
+fullscreenDiv.style.top = '0';
+fullscreenDiv.style.left = '0';
+fullscreenDiv.style.width = '100vw';
+fullscreenDiv.style.height = '100vh';
+fullscreenDiv.style.background = 'rgba(0, 0, 0, 0.8)';
+fullscreenDiv.style.zIndex = '9999';
+
+// Créer l'élément de chargement
+const loadingElement = document.createElement('div');
+loadingElement.textContent = 'Chargement...';
+loadingElement.style.position = 'absolute';
+loadingElement.style.top = '50%';
+loadingElement.style.left = '50%';
+loadingElement.style.transform = 'translate(-50%, -50%)';
+loadingElement.style.color = '#ffffff';
+loadingElement.style.fontFamily = 'Arial, sans-serif';
+loadingElement.style.fontSize = '24px';
+
+// Ajouter l'élément de chargement au div en plein écran
+fullscreenDiv.appendChild(loadingElement);
+
+// Ajouter le div en plein écran à la page
+document.body.appendChild(fullscreenDiv);
+
+// Supprimer le div après 1 seconde
+setTimeout(() => {
+  displayall();
+  fullscreenDiv.remove();
+}, 1000);
